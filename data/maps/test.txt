@@ -1,0 +1,14 @@
+platform 10 400 400 42
+velbox 10 10 0 0.04
+EOF
+Things to look into...
+
+Collision Detection & Physics
+=============================
+
+To determine a collision
+ 1) Check for intersection points of collision boxes along
+    the current position path for the current time interval.
+
+Next part is tricky: finding if the boxes are ever at
+  these intersection points considering accel and such

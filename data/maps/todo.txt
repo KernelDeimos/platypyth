@@ -1,0 +1,10 @@
+Prepare displacement vectors based on dt
+
+A
+  Check for collisions in given displacement
+   * After a collision, displacement vector is checked
+     in order to re-place the object
+  If no collision
+    A new position is set, and displacement is zeroed
+
+REPEAT A until all displacements are zero
