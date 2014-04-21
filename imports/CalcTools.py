@@ -76,9 +76,19 @@ class PositionVector(Vector):
         self.position = newpos
 
 class LineSeg:
-    def __init__(self,x1,y1,x2,y2):
-        self.coords = [x1,y1,x2,y2
+    @staticmethod
+    def point_side(A,B,P):
+        return (B[0]-A[0])*(P[1]-B[1]) - (B[1]-A[1])*(P[0]-B[0])
+    def __init__(self,p1,p2):
+        self.points = [p1,p2]
+    def __getitem__(self,pi):
+        return self.points[pi]
     def check_collision(line1,line2):
-
-        if (((pointSide(line1[0],line1[1],line2[0]) > 0) != (pointSide(line1[0],line1[1],line2[1]) > 0))) and ((pointSide(line2[0],line2[1],line1[0]) > 0) != (pointSide(line2[0],line2[1],line1[1]) > 0))):
-    
+        # these values indicate which side of a line segment a point is on.
+        line_one_point_C = LineSeg.point_side(line1[0],line1[1],line2[0])
+        line_one_point_D = LineSeg.point_side(line1[0],line1[1],line2[0])
+        line_two_point_A = LineSeg.point_side(line2[0],line2[1],line1[0])
+        line_two_point_B = LineSeg.point_side(line2[0],line2[1],line1[1])
+        if (line_one_point_C != line_one_point_D) and (line_two_point_A != line_two_point_B):
+            return True
+        return False

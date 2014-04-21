@@ -85,18 +85,18 @@ class CollisionMask:
                     for x in range(len(pointLists[0])):
                         x2 = x + 1
                         if x2 == len(pointLists[0]): x2=0
-                        lineSegList[0].append((pointLists[0][x],pointLists[0][x2]))
-                        lineSegList[0].append((pointLists[1][x],pointLists[1][x2]))
-                        lineSegList[0].append((pointLists[0][x],pointLists[1][x]))
+                        lineSegList[0].append(CalcTools.LineSeg(pointLists[0][x],pointLists[0][x2]))
+                        lineSegList[0].append(CalcTools.LineSeg(pointLists[1][x],pointLists[1][x2]))
+                        lineSegList[0].append(CalcTools.LineSeg(pointLists[0][x],pointLists[1][x]))
                     for x in range(len(pointLists[2])):
                         x2 = x + 1
                         if x2 == len(pointLists[2]): x2=0
-                        lineSegList[1].append((pointLists[2][x],pointLists[2][x2]))
-                        lineSegList[1].append((pointLists[3][x],pointLists[3][x2]))
-                        lineSegList[1].append((pointLists[2][x],pointLists[3][x]))
+                        lineSegList[1].append(CalcTools.LineSeg(pointLists[2][x],pointLists[2][x2]))
+                        lineSegList[1].append(CalcTools.LineSeg(pointLists[3][x],pointLists[3][x2]))
+                        lineSegList[1].append(CalcTools.LineSeg(pointLists[2][x],pointLists[3][x]))
                     for line1 in lineSegList[0]:
                         for line2 in lineSegList[1]:
-                            if (((pointSide(line1[0],line1[1],line2[0]) > 0) != (pointSide(line1[0],line1[1],line2[1]) > 0))) and ((pointSide(line2[0],line2[1],line1[0]) > 0) != (pointSide(line2[0],line2[1],line1[1]) > 0))):
+                            if line1.check_collision(line2):
                                 return True
         return False
 
